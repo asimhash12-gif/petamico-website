@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | PetAmico</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1f2a44;
+            --secondary: #1abc9c;
+            --accent: #e8f4ff;
+            --text: #333;
+        }
+
+        body { 
+            margin: 0; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background: #f8fafc; 
+            color: var(--text);
+        }
+
+        /* Navigation */
+        nav { 
+            background: white; 
+            padding: 10px 20px; 
+            display: flex; 
+            justify-content: space-around; 
+            align-items: center;
+            position: sticky; 
+            top: 0; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+        nav .logo-container { display: flex; align-items: center; text-decoration: none; }
+        nav .logo-img { height: 50px; margin-right: 10px; }
+        nav .logo-text { font-size: 22px; font-weight: bold; color: var(--primary); }
+        nav .links a { color: var(--primary); margin: 0 15px; text-decoration: none; font-weight: 600; }
+        .active { color: var(--secondary) !important; border-bottom: 2px solid var(--secondary); }
+
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+
+        /* Service Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border-top: 5px solid var(--secondary);
+            text-align: center;
+        }
+
+        .service-card:hover { transform: translateY(-5px); }
+        
+        /* Icon Styling */
+        .icon-box {
+            background: var(--accent);
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            color: var(--secondary);
+            font-size: 30px;
+        }
+
+        .service-card h3 { color: var(--primary); margin-bottom: 15px; }
+        .service-card p { color: #666; line-height: 1.6; text-align: left; }
+
+        /* Form Styling */
+        .booking-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        .booking-box h2 { text-align: center; color: var(--primary); margin-bottom: 30px; }
+        form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .full-width { grid-column: span 2; }
+        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .submit-btn {
+            grid-column: span 2;
+            background: var(--secondary);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .submit-btn:hover { background: #16a085; }
+
+        footer { text-align: center; padding: 40px; background: var(--primary); color: white; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html" class="logo-container">
+        <img src="logo.png" alt="Logo" class="logo-img">
+        <div class="logo-text">PetAmico</div>
+    </a>
+    <div class="links">
+        <a href="index.html">Home</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<header>
+    <h1>Expert Care for Every Pet</h1>
+    <p>Professional services tailored for your pet's happiness</p>
+</header>
+
+<div class="container">
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="icon-box">
+                <i class="fas fa-user-md"></i> </div>
+            <h3>Vet Consultation</h3>
+            <p>Access Karachi's top certified veterinarians. Whether it's a routine checkup or an emergency health concern, get professional advice via video call or home visit.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="icon-box">
+                <i class="fas fa-cut"></i> </div>
+            <h3>Grooming</h3>
+            <p>Full hygiene and styling sessions including bathing, nail trimming, and haircuts. Professional care delivered at your doorstep or our premium salon.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="icon-box">
+                <i class="fas fa-dog"></i> </div>
+            <h3>Pet Training</h3>
+            <p>Transform your pet's behavior with our expert trainers. We focus on obedience, socialization, and behavioral correction using positive reinforcement.</p>
+        </div>
+
+        <div class="service-card">
+            <div class="icon-box">
+                <i class="fas fa-shuttle-van"></i> </div>
+            <h3>Pet Store</h3>
+            <p>Get premium pet food, toys, and healthcare supplies delivered across Karachi. Quality products to keep your pets healthy and active.</p>
+        </div>
+    </div>
+
+    <div class="booking-box">
+        <h2>Schedule an Appointment</h2>
+        <form action="#">
+            <div>
+                <input type="text" placeholder="Your Name" required>
+            </div>
+            <div>
+                <input type="tel" placeholder="Phone Number" required>
+            </div>
+            <div class="full-width">
+                <select required>
+                    <option value="">-- Select Service --</option>
+                    <option>Vet Consultation</option>
+                    <option>Grooming</option>
+                    <option>Training</option>
+                    <option>Pet Store Delivery</option>
+                </select>
+            </div>
+            <div>
+                <input type="date" required>
+            </div>
+            <div>
+                <input type="time" required>
+            </div>
+            <div class="full-width">
+                <textarea rows="4" placeholder="Additional details about your pet..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Confirm My Booking</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 PetAmico - Karachi's Trusted Pet Partner</p>
+</footer>
+
+</body>
+</html>
