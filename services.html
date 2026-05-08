@@ -1,202 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services | PetAmico</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #1f2a44;
-            --secondary: #1abc9c;
-            --accent: #e8f4ff;
-            --text: #333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Services | PetAmico</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #fdf8f2; --warm-white: #fffcf7; --green: #3a6b4a;
+      --green-light: #5a9068; --green-pale: #e8f2eb; --terracotta: #c96a3a;
+      --terracotta-light: #f0c4a8; --brown: #7a4f35; --text: #2d2016;
+      --text-soft: #6b5744; --border: #e5d9cc; --shadow: 0 4px 24px rgba(58,107,74,0.10);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text); line-height: 1.6; }
 
-        body { 
-            margin: 0; 
-            font-family: 'Segoe UI', Arial, sans-serif; 
-            background: #f8fafc; 
-            color: var(--text);
-        }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(253,248,242,0.95); backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 68px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--green); }
+    .nav-logo span { color: var(--terracotta); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { text-decoration: none; font-weight: 600; font-size: 0.95rem; color: var(--text-soft); transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--green); }
+    .nav-cta { background: var(--green); color: #fff; padding: 9px 20px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: background 0.2s, transform 0.15s; }
+    .nav-cta:hover { background: var(--green-light); transform: translateY(-1px); }
 
-        /* Navigation */
-        nav { 
-            background: white; 
-            padding: 10px 20px; 
-            display: flex; 
-            justify-content: space-around; 
-            align-items: center;
-            position: sticky; 
-            top: 0; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-        nav .logo-container { display: flex; align-items: center; text-decoration: none; }
-        nav .logo-img { height: 50px; margin-right: 10px; }
-        nav .logo-text { font-size: 22px; font-weight: bold; color: var(--primary); }
-        nav .links a { color: var(--primary); margin: 0 15px; text-decoration: none; font-weight: 600; }
-        .active { color: var(--secondary) !important; border-bottom: 2px solid var(--secondary); }
+    /* PAGE HEADER */
+    .page-header {
+      background: linear-gradient(135deg, var(--green) 0%, #2d5238 100%);
+      color: #fff;
+      padding: 80px 5% 70px;
+      text-align: center;
+    }
+    .page-header .badge {
+      display: inline-block; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 50px; padding: 6px 16px; font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .page-header h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 14px; }
+    .page-header p { font-size: 1.05rem; opacity: 0.85; max-width: 540px; margin: 0 auto; }
 
-        header {
-            background: var(--primary);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-        }
+    /* SERVICES GRID */
+    .services-section { padding: 80px 5%; }
+    .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; max-width: 1100px; margin: 0 auto; }
+    .service-item {
+      background: var(--warm-white); border-radius: 24px; overflow: hidden;
+      border: 1px solid var(--border);
+      display: grid; grid-template-columns: 200px 1fr;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-item:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .service-item img { width: 200px; height: 100%; object-fit: cover; }
+    .service-item-body { padding: 28px; }
+    .service-emoji { font-size: 1.6rem; margin-bottom: 10px; display: block; }
+    .service-item-body h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: 10px; }
+    .service-item-body p { font-size: 0.92rem; color: var(--text-soft); margin-bottom: 18px; }
+    .service-price {
+      display: inline-block; background: var(--green-pale); color: var(--green);
+      border-radius: 50px; padding: 5px 14px; font-size: 0.82rem; font-weight: 700;
+    }
 
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+    /* BOOKING SECTION */
+    .booking-section {
+      padding: 80px 5%;
+      background: var(--warm-white);
+    }
+    .booking-inner {
+      max-width: 640px; margin: 0 auto; text-align: center;
+    }
+    .booking-inner .section-label { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px; }
+    .booking-inner h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 14px; }
+    .booking-inner p { color: var(--text-soft); margin-bottom: 40px; }
 
-        /* Service Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-bottom: 60px;
-        }
+    .booking-form {
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 24px; padding: 40px; text-align: left;
+    }
+    .form-group { margin-bottom: 22px; }
+    .form-group label { display: block; font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; color: var(--text); }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 13px 16px;
+      border: 1.5px solid var(--border); border-radius: 12px;
+      background: var(--warm-white); color: var(--text);
+      font-family: 'Nunito', sans-serif; font-size: 0.95rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--green); box-shadow: 0 0 0 3px rgba(58,107,74,0.12);
+    }
+    .form-group textarea { height: 100px; resize: none; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 
-        .service-card {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            border-top: 5px solid var(--secondary);
-            text-align: center;
-        }
+    .btn-book-whatsapp {
+      width: 100%; padding: 16px;
+      background: #25D366; color: #fff;
+      border: none; border-radius: 14px;
+      font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 700;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+    }
+    .btn-book-whatsapp:hover { background: #1ebc5a; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(37,211,102,0.4); }
+    .btn-book-whatsapp svg { width: 22px; height: 22px; fill: #fff; }
 
-        .service-card:hover { transform: translateY(-5px); }
-        
-        /* Icon Styling */
-        .icon-box {
-            background: var(--accent);
-            width: 70px;
-            height: 70px;
-            line-height: 70px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            color: var(--secondary);
-            font-size: 30px;
-        }
+    .form-note { text-align: center; margin-top: 14px; font-size: 0.82rem; color: var(--text-soft); }
 
-        .service-card h3 { color: var(--primary); margin-bottom: 15px; }
-        .service-card p { color: #666; line-height: 1.6; text-align: left; }
+    /* FOOTER */
+    footer { background: var(--text); color: rgba(255,255,255,0.6); text-align: center; padding: 24px 5%; font-size: 0.88rem; }
+    footer strong { color: #fff; }
 
-        /* Form Styling */
-        .booking-box {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            max-width: 700px;
-            margin: 0 auto 60px;
-        }
-        .booking-box h2 { text-align: center; color: var(--primary); margin-bottom: 30px; }
-        form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .full-width { grid-column: span 2; }
-        input, select, textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        .submit-btn {
-            grid-column: span 2;
-            background: var(--secondary);
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 50px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .submit-btn:hover { background: #16a085; }
+    /* WHATSAPP FLOAT */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      background: #25D366; color: #fff; border-radius: 50px; padding: 14px 22px;
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      box-shadow: 0 6px 28px rgba(37,211,102,0.45); transition: all 0.2s;
+    }
+    .wa-float:hover { transform: translateY(-3px); box-shadow: 0 10px 36px rgba(37,211,102,0.55); }
+    .wa-float svg { width: 22px; height: 22px; fill: #fff; }
+    .wa-pulse { position: absolute; top: -4px; right: -4px; width: 14px; height: 14px; background: #ff4757; border-radius: 50%; border: 2px solid #fff; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.3); } }
 
-        footer { text-align: center; padding: 40px; background: var(--primary); color: white; }
-    </style>
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .service-item { grid-template-columns: 160px 1fr; }
+      nav .nav-cta { display: none; }
+    }
+    @media (max-width: 600px) {
+      .service-item { grid-template-columns: 1fr; }
+      .service-item img { width: 100%; height: 200px; }
+      .form-row { grid-template-columns: 1fr; }
+      .wa-float span { display: none; }
+      .wa-float { padding: 14px; border-radius: 50%; }
+    }
+  </style>
 </head>
 <body>
 
-<nav>
-    <a href="index.html" class="logo-container">
-        <img src="logo.png" alt="Logo" class="logo-img">
-        <div class="logo-text">PetAmico</div>
-    </a>
-    <div class="links">
-        <a href="index.html">Home</a>
-        <a href="services.html" class="active">Services</a>
-        <a href="contact.html">Contact</a>
-    </div>
-</nav>
+  <nav>
+    <a href="index.html" class="nav-logo">🐾 Pet<span>Amico</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="#booking" class="nav-cta">Book Now</a>
+  </nav>
 
-<header>
+  <div class="page-header">
+    <div class="badge">🐾 What We Offer</div>
     <h1>Expert Care for Every Pet</h1>
-    <p>Professional services tailored for your pet's happiness</p>
-</header>
+    <p>Professional services tailored for your pet's happiness — delivered at your doorstep or our premium facility.</p>
+  </div>
 
-<div class="container">
+  <section class="services-section">
     <div class="services-grid">
-        <div class="service-card">
-            <div class="icon-box">
-                <i class="fas fa-user-md"></i> </div>
-            <h3>Vet Consultation</h3>
-            <p>Access Karachi's top certified veterinarians. Whether it's a routine checkup or an emergency health concern, get professional advice via video call or home visit.</p>
+      <div class="service-item">
+        <img src="https://images.unsplash.com/photo-1559000357-f6b52ddfbe37?w=400&q=80" alt="Vet Consultation" />
+        <div class="service-item-body">
+          <span class="service-emoji">🩺</span>
+          <h3>Vet Consultation</h3>
+          <p>Access Karachi's top certified veterinarians. Routine checkups, emergency care, or video call advice — we come to you.</p>
+          <span class="service-price">From Rs. 1,500</span>
         </div>
-
-        <div class="service-card">
-            <div class="icon-box">
-                <i class="fas fa-cut"></i> </div>
-            <h3>Grooming</h3>
-            <p>Full hygiene and styling sessions including bathing, nail trimming, and haircuts. Professional care delivered at your doorstep or our premium salon.</p>
+      </div>
+      <div class="service-item">
+        <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=400&q=80" alt="Grooming" />
+        <div class="service-item-body">
+          <span class="service-emoji">✂️</span>
+          <h3>Grooming</h3>
+          <p>Full hygiene and styling: bath, nail trim, haircut, and ear cleaning. Professional care at home or our salon.</p>
+          <span class="service-price">From Rs. 2,000</span>
         </div>
-
-        <div class="service-card">
-            <div class="icon-box">
-                <i class="fas fa-dog"></i> </div>
-            <h3>Pet Training</h3>
-            <p>Transform your pet's behavior with our expert trainers. We focus on obedience, socialization, and behavioral correction using positive reinforcement.</p>
+      </div>
+      <div class="service-item">
+        <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&q=80" alt="Pet Training" />
+        <div class="service-item-body">
+          <span class="service-emoji">🎓</span>
+          <h3>Pet Training</h3>
+          <p>Obedience, socialization, and behavioral correction using positive reinforcement by certified trainers.</p>
+          <span class="service-price">From Rs. 3,000</span>
         </div>
-
-        <div class="service-card">
-            <div class="icon-box">
-                <i class="fas fa-shuttle-van"></i> </div>
-            <h3>Pet Store</h3>
-            <p>Get premium pet food, toys, and healthcare supplies delivered across Karachi. Quality products to keep your pets healthy and active.</p>
+      </div>
+      <div class="service-item">
+        <img src="https://images.unsplash.com/photo-1601758125946-6ec2ef64daf8?w=400&q=80" alt="Pet Store" />
+        <div class="service-item-body">
+          <span class="service-emoji">🛒</span>
+          <h3>Pet Store</h3>
+          <p>Premium food, toys, and healthcare supplies delivered across Karachi. Quality products for healthy, active pets.</p>
+          <span class="service-price">Free delivery on Rs. 2,000+</span>
         </div>
+      </div>
     </div>
+  </section>
 
-    <div class="booking-box">
-        <h2>Schedule an Appointment</h2>
-        <form action="#">
-            <div>
-                <input type="text" placeholder="Your Name" required>
-            </div>
-            <div>
-                <input type="tel" placeholder="Phone Number" required>
-            </div>
-            <div class="full-width">
-                <select required>
-                    <option value="">-- Select Service --</option>
-                    <option>Vet Consultation</option>
-                    <option>Grooming</option>
-                    <option>Training</option>
-                    <option>Pet Store Delivery</option>
-                </select>
-            </div>
-            <div>
-                <input type="date" required>
-            </div>
-            <div>
-                <input type="time" required>
-            </div>
-            <div class="full-width">
-                <textarea rows="4" placeholder="Additional details about your pet..."></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Confirm My Booking</button>
-        </form>
+  <!-- BOOKING -->
+  <section class="booking-section" id="booking">
+    <div class="booking-inner">
+      <div class="section-label">Schedule a Visit</div>
+      <h2>Book Your Appointment</h2>
+      <p>Fill in your details and we'll confirm via WhatsApp within minutes.</p>
+      <div class="booking-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="b-name" placeholder="e.g. Sara Ahmed" />
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" id="b-phone" placeholder="+92 300 0000000" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Select Service</label>
+          <select id="b-service">
+            <option value="">-- Choose a service --</option>
+            <option value="Vet Consultation">🩺 Vet Consultation</option>
+            <option value="Grooming">✂️ Grooming</option>
+            <option value="Pet Training">🎓 Pet Training</option>
+            <option value="Pet Store Delivery">🛒 Pet Store Delivery</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Preferred Date & Time</label>
+          <input type="datetime-local" id="b-date" />
+        </div>
+        <div class="form-group">
+          <label>Any notes? (optional)</label>
+          <textarea id="b-notes" placeholder="Tell us about your pet or special requirements…"></textarea>
+        </div>
+        <button class="btn-book-whatsapp" onclick="bookOnWhatsApp()">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Confirm Booking via WhatsApp
+        </button>
+        <p class="form-note">📲 You'll get a confirmation message within minutes.</p>
+      </div>
     </div>
-</div>
+  </section>
 
-<footer>
-    <p>© 2026 PetAmico - Karachi's Trusted Pet Partner</p>
-</footer>
+  <footer>
+    <strong>PetAmico</strong> · © 2026 · Karachi's Trusted Pet Partner 🐾
+  </footer>
+
+  <a href="https://wa.me/923001234567?text=Hi%20PetAmico!%20I%27d%20like%20to%20book%20an%20appointment." class="wa-float" target="_blank">
+    <div class="wa-pulse"></div>
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    <span>Chat on WhatsApp</span>
+  </a>
+
+  <script>
+    function bookOnWhatsApp() {
+      const name = document.getElementById('b-name').value.trim() || 'A customer';
+      const service = document.getElementById('b-service').value || 'a service';
+      const date = document.getElementById('b-date').value;
+      const notes = document.getElementById('b-notes').value.trim();
+      let msg = `Hi PetAmico! 🐾\n\nI'd like to book *${service}*.\n\n*Name:* ${name}`;
+      if (date) msg += `\n*Preferred time:* ${new Date(date).toLocaleString('en-PK', {dateStyle:'medium', timeStyle:'short'})}`;
+      if (notes) msg += `\n*Notes:* ${notes}`;
+      window.open(`https://wa.me/923001234567?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  </script>
 
 </body>
 </html>
